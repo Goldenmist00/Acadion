@@ -248,48 +248,135 @@ export default function UsersPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>User Directory</CardTitle>
+          <CardTitle>
+            {role === "student" ? "My Classmates" : 
+             role === "staff" ? "My Students" : 
+             role === "warden" ? "Hostel Residents" : 
+             role === "finance" ? "Student Financial Records" : 
+             "User Directory"}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="rounded-md border">
-            <div className="grid grid-cols-7 gap-4 p-3 text-sm font-medium bg-muted/30">
-              <div>User ID</div>
-              <div>Name</div>
-              <div>Email</div>
-              <div>Role</div>
-              <div>Department</div>
-              <div>Status</div>
-              <div>Actions</div>
-            </div>
-            {users.map((user, idx) => (
-              <div key={idx} className="grid grid-cols-7 gap-4 p-3 text-sm border-t items-center">
-                <div className="font-mono text-xs">{user.id}</div>
-                <div className="font-medium">{user.name}</div>
-                <div className="text-muted-foreground">{user.email}</div>
-                <div>
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${
-                    user.role === "Admin" ? "bg-purple-100 text-purple-700" :
-                    user.role === "Student" ? "bg-blue-100 text-blue-700" :
-                    user.role === "Staff" ? "bg-green-100 text-green-700" :
-                    user.role === "Finance" ? "bg-orange-100 text-orange-700" :
-                    "bg-pink-100 text-pink-700"
-                  }`}>
-                    {user.role}
-                  </span>
+            {role === "student" ? (
+              <>
+                <div className="grid grid-cols-5 gap-4 p-3 text-sm font-medium bg-muted/30">
+                  <div>Student ID</div>
+                  <div>Name</div>
+                  <div>Course</div>
+                  <div>Year</div>
+                  <div>Status</div>
                 </div>
-                <div>{user.department}</div>
-                <div className={
-                  user.status === "Active" ? "text-green-600 font-medium" :
-                  "text-red-600 font-medium"
-                }>
-                  {user.status}
+                {data.users.map((user, idx) => (
+                  <div key={idx} className="grid grid-cols-5 gap-4 p-3 text-sm border-t items-center">
+                    <div className="font-mono text-xs">{user.id}</div>
+                    <div className="font-medium">{user.name}</div>
+                    <div>{user.course}</div>
+                    <div>{user.year}</div>
+                    <div className="text-green-600 font-medium">{user.status}</div>
+                  </div>
+                ))}
+              </>
+            ) : role === "staff" ? (
+              <>
+                <div className="grid grid-cols-5 gap-4 p-3 text-sm font-medium bg-muted/30">
+                  <div>Student ID</div>
+                  <div>Name</div>
+                  <div>Course</div>
+                  <div>Grade</div>
+                  <div>Attendance</div>
                 </div>
-                <div className="flex gap-1">
-                  <Button size="sm" variant="outline" className="h-7 px-2 text-xs">Edit</Button>
-                  <Button size="sm" variant="outline" className="h-7 px-2 text-xs">View</Button>
+                {data.users.map((user, idx) => (
+                  <div key={idx} className="grid grid-cols-5 gap-4 p-3 text-sm border-t items-center">
+                    <div className="font-mono text-xs">{user.id}</div>
+                    <div className="font-medium">{user.name}</div>
+                    <div>{user.course}</div>
+                    <div className="font-semibold text-green-600">{user.grade}</div>
+                    <div>{user.attendance}</div>
+                  </div>
+                ))}
+              </>
+            ) : role === "warden" ? (
+              <>
+                <div className="grid grid-cols-5 gap-4 p-3 text-sm font-medium bg-muted/30">
+                  <div>Resident ID</div>
+                  <div>Name</div>
+                  <div>Room</div>
+                  <div>Block</div>
+                  <div>Status</div>
                 </div>
-              </div>
-            ))}
+                {data.users.map((user, idx) => (
+                  <div key={idx} className="grid grid-cols-5 gap-4 p-3 text-sm border-t items-center">
+                    <div className="font-mono text-xs">{user.id}</div>
+                    <div className="font-medium">{user.name}</div>
+                    <div className="font-mono">{user.room}</div>
+                    <div>{user.block}</div>
+                    <div className="text-green-600 font-medium">{user.status}</div>
+                  </div>
+                ))}
+              </>
+            ) : role === "finance" ? (
+              <>
+                <div className="grid grid-cols-5 gap-4 p-3 text-sm font-medium bg-muted/30">
+                  <div>Student ID</div>
+                  <div>Name</div>
+                  <div>Total Fee</div>
+                  <div>Paid</div>
+                  <div>Status</div>
+                </div>
+                {data.users.map((user, idx) => (
+                  <div key={idx} className="grid grid-cols-5 gap-4 p-3 text-sm border-t items-center">
+                    <div className="font-mono text-xs">{user.id}</div>
+                    <div className="font-medium">{user.name}</div>
+                    <div className="font-semibold">{user.totalFee}</div>
+                    <div className="font-semibold">{user.paid}</div>
+                    <div className={
+                      user.status === "Paid" ? "text-green-600 font-medium" :
+                      user.status === "Partial" ? "text-orange-600 font-medium" :
+                      "text-red-600 font-medium"
+                    }>
+                      {user.status}
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                <div className="grid grid-cols-6 gap-4 p-3 text-sm font-medium bg-muted/30">
+                  <div>User ID</div>
+                  <div>Name</div>
+                  <div>Email</div>
+                  <div>Role</div>
+                  <div>Department</div>
+                  <div>Status</div>
+                </div>
+                {data.users.map((user, idx) => (
+                  <div key={idx} className="grid grid-cols-6 gap-4 p-3 text-sm border-t items-center">
+                    <div className="font-mono text-xs">{user.id}</div>
+                    <div className="font-medium">{user.name}</div>
+                    <div className="text-muted-foreground">{user.email}</div>
+                    <div>
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${
+                        user.role === "Admin" ? "bg-purple-100 text-purple-700" :
+                        user.role === "Student" ? "bg-blue-100 text-blue-700" :
+                        user.role === "Staff" ? "bg-green-100 text-green-700" :
+                        user.role === "Finance" ? "bg-orange-100 text-orange-700" :
+                        "bg-pink-100 text-pink-700"
+                      }`}>
+                        {user.role}
+                      </span>
+                    </div>
+                    <div>{user.department}</div>
+                    <div className={
+                      user.status === "Active" ? "text-green-600 font-medium" :
+                      "text-red-600 font-medium"
+                    }>
+                      {user.status}
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
           </div>
         </CardContent>
       </Card>

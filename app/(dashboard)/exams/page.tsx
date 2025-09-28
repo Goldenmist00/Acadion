@@ -146,7 +146,7 @@ export default function ExamsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {upcomingExams.map((exam, idx) => (
+              {data.exams.map((exam, idx) => (
                 <div key={idx} className="flex justify-between items-center p-3 border rounded-lg">
                   <div>
                     <h4 className="font-medium">{exam.subject}</h4>
@@ -176,7 +176,7 @@ export default function ExamsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {recentResults.map((result, idx) => (
+              {data.results ? data.results.map((result, idx) => (
                 <div key={idx} className="p-3 border rounded-lg">
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="font-medium">{result.subject}</h4>
@@ -197,7 +197,11 @@ export default function ExamsPage() {
                     </div>
                   </div>
                 </div>
-              ))}
+              )) : (
+                <div className="text-center text-muted-foreground py-4">
+                  No results available
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>
