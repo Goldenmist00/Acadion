@@ -150,11 +150,91 @@ export default function UsersPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Role Permissions</CardTitle>
+            <CardTitle>
+              {role === "warden" ? "Hostel Block Management" : 
+               role === "student" ? "Study Groups & Activities" : 
+               role === "staff" ? "Class Management" : 
+               role === "finance" ? "Payment Categories" : 
+               "Role Permissions"}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {[
+              {role === "warden" ? [
+                { block: "Block A (Boys)", capacity: 160, occupied: 145, maintenance: "AC Repair - Room 204", status: "Good" },
+                { block: "Block B (Boys)", capacity: 150, occupied: 138, maintenance: "WiFi Upgrade - Floor 2", status: "Fair" },
+                { block: "Block C (Girls)", capacity: 155, occupied: 142, maintenance: "Plumbing - Room 301", status: "Good" },
+                { block: "Block D (Girls)", capacity: 150, occupied: 117, maintenance: "Electrical - Common Area", status: "Excellent" },
+              ].map((blockData, idx) => (
+                <div key={idx} className="p-3 border rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <h4 className="font-medium">{blockData.block}</h4>
+                    <span className={`text-xs px-2 py-1 rounded ${
+                      blockData.status === "Excellent" ? "bg-green-100 text-green-700" :
+                      blockData.status === "Good" ? "bg-blue-100 text-blue-700" :
+                      "bg-yellow-100 text-yellow-700"
+                    }`}>
+                      {blockData.status}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground mb-2">
+                    <span>Capacity: {blockData.capacity}</span>
+                    <span>Occupied: {blockData.occupied}</span>
+                    <span>Vacant: {blockData.capacity - blockData.occupied}</span>
+                  </div>
+                  <div className="text-xs bg-orange-50 text-orange-700 p-2 rounded">
+                    Current Work: {blockData.maintenance}
+                  </div>
+                </div>
+              )) : role === "student" ? [
+                { group: "Data Structures Study Group", members: 8, subject: "Computer Science", meeting: "Mon, Wed 6 PM" },
+                { group: "Mathematics Club", members: 15, subject: "Mathematics", meeting: "Tue, Thu 5 PM" },
+                { group: "Coding Competition Team", members: 6, subject: "Programming", meeting: "Sat 2 PM" },
+              ].map((groupData, idx) => (
+                <div key={idx} className="p-3 border rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <h4 className="font-medium">{groupData.group}</h4>
+                    <Button size="sm" variant="outline" className="h-6 px-2 text-xs">Join</Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                    <span>👥 {groupData.members} members</span>
+                    <span>📚 {groupData.subject}</span>
+                    <span>🕐 {groupData.meeting}</span>
+                  </div>
+                </div>
+              )) : role === "staff" ? [
+                { class: "CS-3A Data Structures", students: 45, schedule: "Mon, Wed, Fri 10 AM", room: "Lab-3" },
+                { class: "CS-2B Algorithms", students: 42, schedule: "Tue, Thu 2 PM", room: "A-205" },
+                { class: "CS-4A Database Systems", students: 38, schedule: "Mon, Wed 11 AM", room: "Lab-2" },
+              ].map((classData, idx) => (
+                <div key={idx} className="p-3 border rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <h4 className="font-medium">{classData.class}</h4>
+                    <Button size="sm" variant="outline" className="h-6 px-2 text-xs">Manage</Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                    <span>👥 {classData.students} students</span>
+                    <span>🕐 {classData.schedule}</span>
+                    <span>📍 {classData.room}</span>
+                  </div>
+                </div>
+              )) : role === "finance" ? [
+                { category: "Tuition Fees", collected: "₹1.8 Cr", pending: "₹20 L", rate: 90 },
+                { category: "Hostel Fees", collected: "₹35 L", pending: "₹8 L", rate: 81 },
+                { category: "Lab Fees", collected: "₹12 L", pending: "₹3 L", rate: 80 },
+                { category: "Library Fees", collected: "₹4.5 L", pending: "₹1 L", rate: 82 },
+              ].map((feeData, idx) => (
+                <div key={idx} className="p-3 border rounded-lg">
+                  <div className="flex justify-between items-center mb-2">
+                    <h4 className="font-medium">{feeData.category}</h4>
+                    <span className="text-xs font-semibold text-green-600">{feeData.rate}%</span>
+                  </div>
+                  <div className="flex justify-between text-xs text-muted-foreground">
+                    <span>Collected: {feeData.collected}</span>
+                    <span>Pending: {feeData.pending}</span>
+                  </div>
+                </div>
+              )) : [
                 { role: "Admin", permissions: ["Full System Access", "User Management", "System Configuration", "Reports & Analytics"] },
                 { role: "Staff", permissions: ["Course Management", "Grade Entry", "Student Records", "Exam Scheduling"] },
                 { role: "Finance", permissions: ["Fee Management", "Payment Processing", "Financial Reports", "Invoice Generation"] },
@@ -181,27 +261,121 @@ export default function UsersPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle>
+              {role === "warden" ? "Hostel Actions" : 
+               role === "student" ? "My Activities" : 
+               role === "staff" ? "Teaching Tools" : 
+               role === "finance" ? "Financial Tools" : 
+               "Quick Actions"}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
-            <Button variant="outline" className="w-full justify-start">
-              Bulk User Registration
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
-              Password Reset
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
-              Export User List
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
-              Role Assignment
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
-              Access Logs
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
-              Deactivate Users
-            </Button>
+            {role === "warden" ? (
+              <>
+                <Button variant="outline" className="w-full justify-start">
+                  🏠 Room Check-in/out
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  🔧 Maintenance Requests
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📋 Resident Attendance
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📊 Block Reports
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  🚨 Emergency Contacts
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📝 Visitor Log
+                </Button>
+              </>
+            ) : role === "student" ? (
+              <>
+                <Button variant="outline" className="w-full justify-start">
+                  👥 Join Study Group
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📚 Library Resources
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  🎯 Career Guidance
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📧 Contact Classmates
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📅 Event Calendar
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  🏆 Achievements
+                </Button>
+              </>
+            ) : role === "staff" ? (
+              <>
+                <Button variant="outline" className="w-full justify-start">
+                  📝 Grade Entry
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📊 Class Analytics
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📧 Send Announcements
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📋 Attendance Tracker
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📚 Course Materials
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  🎯 Student Progress
+                </Button>
+              </>
+            ) : role === "finance" ? (
+              <>
+                <Button variant="outline" className="w-full justify-start">
+                  💰 Payment Processing
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📊 Financial Reports
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📧 Payment Reminders
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📋 Fee Structure
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  💳 Refund Processing
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  📈 Revenue Analytics
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button variant="outline" className="w-full justify-start">
+                  Bulk User Registration
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  Password Reset
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  Export User List
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  Role Assignment
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  Access Logs
+                </Button>
+                <Button variant="outline" className="w-full justify-start">
+                  Deactivate Users
+                </Button>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>
