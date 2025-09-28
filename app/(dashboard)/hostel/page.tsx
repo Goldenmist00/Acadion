@@ -136,7 +136,7 @@ export default function HostelPage() {
             <CardTitle>Block-wise Occupancy</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {blocks.map((block, idx) => (
+            {role === "warden" && data.data.map((block, idx) => (
               <div key={idx} className="space-y-2">
                 <div className="flex justify-between items-center">
                   <h4 className="font-medium">{block.name}</h4>
@@ -233,7 +233,13 @@ export default function HostelPage() {
               <div>Occupant(s)</div>
               <div>Status</div>
             </div>
-            {rooms.map((room, idx) => (
+            {[
+              { number: "A-101", block: "Block A", type: "Single", occupant: "Arjun Sharma", status: "Occupied" },
+              { number: "A-102", block: "Block A", type: "Double", occupant: "Priya Patel, Sneha Singh", status: "Occupied" },
+              { number: "A-103", block: "Block A", type: "Single", occupant: "-", status: "Vacant" },
+              { number: "B-201", block: "Block B", type: "Triple", occupant: "Rahul Kumar, Vikram Gupta", status: "Partially Occupied" },
+              { number: "B-202", block: "Block B", type: "Double", occupant: "-", status: "Maintenance" },
+            ].map((room, idx) => (
               <div key={idx} className="grid grid-cols-5 gap-4 p-3 text-sm border-t items-center">
                 <div className="font-mono font-medium">{room.number}</div>
                 <div>{room.block}</div>
