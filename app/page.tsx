@@ -40,7 +40,7 @@ export default function LandingPage() {
             <h1 className="text-6xl md:text-7xl font-bold text-balance bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Modern ERP for Education
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl">
+            <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
               Transform your educational institution with our comprehensive ERP solution. Streamline admissions, manage finances, and enhance student experience.
             </p>
           </div>
