@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Rocket, Sparkles, ArrowRight, PlayCircle } from "lucide-react"
+import { Rocket, Sparkles, ArrowRight, PlayCircle, LogIn } from "lucide-react"
 
 export default function LandingPage() {
   return (
@@ -17,12 +17,14 @@ export default function LandingPage() {
         <div className="flex items-center space-x-4">
           <Link href="/login">
             <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+              <LogIn className="h-4 w-4 mr-2" />
               Login
             </Button>
           </Link>
           <Link href="/signup">
             <Button className="bg-primary text-primary-foreground hover:opacity-90">
               Get Started
+              <ArrowRight className="h-4 w-4 ml-2" />
             </Button>
           </Link>
         </div>
@@ -35,7 +37,7 @@ export default function LandingPage() {
             <span className="inline-flex items-center rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-medium text-primary">
               ✨ New • Acadion ERP Platform
             </span>
-            <h1 className="text-5xl md:text-6xl font-bold text-balance bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h1 className="text-6xl md:text-7xl font-bold text-balance bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Modern ERP for Education
             </h1>
             <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl">
