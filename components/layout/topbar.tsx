@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { useRole } from "@/components/providers/role-provider"
 import Link from "next/link"
+import { Bell, User, LogOut } from "lucide-react"
 
 type Role = "admin" | "student" | "finance" | "warden" | "staff"
 
@@ -24,13 +25,20 @@ export function Topbar({ role = "admin" }: { role?: Role }) {
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm">
-            Notifications
+            <Bell className="h-4 w-4" />
+            <span className="sr-only">Notifications</span>
           </Button>
           <Button size="sm" className="bg-primary text-primary-foreground hover:opacity-90" asChild>
-            <Link href="/profile">Profile</Link>
+            <Link href="/profile">
+              <User className="h-4 w-4 mr-2" />
+              Profile
+            </Link>
           </Button>
           <Button variant="outline" size="sm" asChild>
-            <Link href="/login">Logout</Link>
+            <Link href="/login">
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
+            </Link>
           </Button>
         </div>
       </div>

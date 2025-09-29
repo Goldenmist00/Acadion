@@ -73,38 +73,7 @@ export default function LandingPage() {
 
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-3xl"></div>
-          <Card className="relative border-2 shadow-2xl bg-background/80 backdrop-blur-sm">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                Live Dashboard Preview
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="aspect-video rounded-lg overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center border">
-                <div className="text-center space-y-2">
-                  <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-                    <span className="text-2xl">📊</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">Interactive Dashboard</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                <div className="bg-green-100 dark:bg-green-900/20 p-3 rounded-lg text-center">
-                  <div className="text-lg font-semibold text-green-700 dark:text-green-400">92%</div>
-                  <div className="text-xs text-green-600 dark:text-green-500">Attendance</div>
-                </div>
-                <div className="bg-blue-100 dark:bg-blue-900/20 p-3 rounded-lg text-center">
-                  <div className="text-lg font-semibold text-blue-700 dark:text-blue-400">1,247</div>
-                  <div className="text-xs text-blue-600 dark:text-blue-500">Students</div>
-                </div>
-                <div className="bg-purple-100 dark:bg-purple-900/20 p-3 rounded-lg text-center">
-                  <div className="text-lg font-semibold text-purple-700 dark:text-purple-400">₹2.4Cr</div>
-                  <div className="text-xs text-purple-600 dark:text-purple-500">Revenue</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="relative border-2 shadow-2xl bg-background/80 backdrop-blur-sm rounded-2xl aspect-video"></div>
         </div>
       </section>
 
