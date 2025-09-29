@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Rocket, Sparkles, ArrowRight, PlayCircle } from "lucide-react"
 
 export default function LandingPage() {
   return (
@@ -28,7 +29,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 grid md:grid-cols-2 gap-16 items-center flex-1">
+      <section className="container mx-auto px-4 py-20 flex-1 flex flex-col items-center justify-center text-center">
         <div className="space-y-8">
           <div className="space-y-4">
             <span className="inline-flex items-center rounded-full bg-primary/10 border border-primary/20 px-4 py-2 text-sm font-medium text-primary">
@@ -37,25 +38,27 @@ export default function LandingPage() {
             <h1 className="text-5xl md:text-6xl font-bold text-balance bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Modern ERP for Education
             </h1>
-            <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-lg">
+            <p className="text-xl text-muted-foreground text-pretty leading-relaxed max-w-2xl">
               Transform your educational institution with our comprehensive ERP solution. Streamline admissions, manage finances, and enhance student experience.
             </p>
           </div>
           
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             <Link href="/login">
               <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300">
+                <Rocket className="h-5 w-5 mr-2" />
                 Start Your Journey
               </Button>
             </Link>
             <Link href="#features">
               <Button size="lg" variant="outline" className="border-2 hover:bg-primary/5">
+                <Sparkles className="h-5 w-5 mr-2" />
                 Explore Features
               </Button>
             </Link>
           </div>
 
-          <div className="flex items-center space-x-8 pt-4">
+          <div className="flex items-center justify-center space-x-8 pt-4">
             <div className="text-center">
               <div className="text-2xl font-bold text-primary">10k+</div>
               <div className="text-sm text-muted-foreground">Students</div>
@@ -69,11 +72,6 @@ export default function LandingPage() {
               <div className="text-sm text-muted-foreground">Uptime</div>
             </div>
           </div>
-        </div>
-
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-3xl"></div>
-          <div className="relative border-2 shadow-2xl bg-background/80 backdrop-blur-sm rounded-2xl aspect-video"></div>
         </div>
       </section>
 
@@ -169,11 +167,13 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Link href="/login">
                   <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90 shadow-lg hover:shadow-xl transition-all duration-300">
+                    <ArrowRight className="h-5 w-5 mr-2" />
                     Get Started Today
                   </Button>
                 </Link>
                 <Link href="/signup">
                   <Button size="lg" variant="outline" className="border-2 hover:bg-primary/5">
+                    <PlayCircle className="h-5 w-5 mr-2" />
                     Request Demo
                   </Button>
                 </Link>
